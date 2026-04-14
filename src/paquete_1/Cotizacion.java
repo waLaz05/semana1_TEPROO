@@ -1,3 +1,5 @@
+package paquete_1;
+
 public class Cotizacion {
 	// Atributos de la cotizacion
 	private String cliente;
