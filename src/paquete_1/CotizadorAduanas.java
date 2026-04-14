@@ -38,10 +38,13 @@ public class CotizadorAduanas extends JFrame implements ActionListener {
 	private JButton btnBuscar;
 	private JButton btnReportar;
 	
+	
 	private JTextArea txtS;
 	
 	// Mi lista grupal
 	private ArrayList<Cotizacion> listaCotizaciones;
+	private JButton btnModificar;
+	private JButton btnEliminar;
 
 	/**
 	 * Launch the application.
@@ -71,8 +74,6 @@ public class CotizadorAduanas extends JFrame implements ActionListener {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
-		// estilo del profesor: sin layout y con setBounds
 		contentPane.setLayout(null);
 		
 		lblCliente = new JLabel("Cliente (Nombre):");
@@ -89,8 +90,8 @@ public class CotizadorAduanas extends JFrame implements ActionListener {
 		contentPane.add(lblMercancia);
 		
 		txtTipoMercancia = new JTextField();
-		txtTipoMercancia.setColumns(10);
 		txtTipoMercancia.setBounds(180, 47, 120, 20);
+		txtTipoMercancia.setColumns(10);
 		contentPane.add(txtTipoMercancia);
 		
 		lblValor = new JLabel("Valor de la carga ($):");
@@ -98,8 +99,8 @@ public class CotizadorAduanas extends JFrame implements ActionListener {
 		contentPane.add(lblValor);
 		
 		txtValorCarga = new JTextField();
-		txtValorCarga.setColumns(10);
 		txtValorCarga.setBounds(180, 77, 120, 20);
+		txtValorCarga.setColumns(10);
 		contentPane.add(txtValorCarga);
 		
 		lblPeso = new JLabel("Peso/Volumen:");
@@ -107,8 +108,8 @@ public class CotizadorAduanas extends JFrame implements ActionListener {
 		contentPane.add(lblPeso);
 		
 		txtPesoVolumen = new JTextField();
-		txtPesoVolumen.setColumns(10);
 		txtPesoVolumen.setBounds(180, 107, 120, 20);
+		txtPesoVolumen.setColumns(10);
 		contentPane.add(txtPesoVolumen);
 		
 		chkDesaduanaje = new JCheckBox("Importación c/ Desaduanaje");
@@ -120,23 +121,23 @@ public class CotizadorAduanas extends JFrame implements ActionListener {
 		contentPane.add(lblBuscar);
 		
 		txtBuscarCliente = new JTextField();
-		txtBuscarCliente.setColumns(10);
 		txtBuscarCliente.setBounds(180, 177, 120, 20);
+		txtBuscarCliente.setColumns(10);
 		contentPane.add(txtBuscarCliente);
 		
 		btnAdicionar = new JButton("Adicionar");
-		btnAdicionar.addActionListener(this);
 		btnAdicionar.setBounds(330, 16, 120, 23);
+		btnAdicionar.addActionListener(this);
 		contentPane.add(btnAdicionar);
 		
 		btnBuscar = new JButton("Buscar");
-		btnBuscar.addActionListener(this);
 		btnBuscar.setBounds(330, 176, 120, 23);
+		btnBuscar.addActionListener(this);
 		contentPane.add(btnBuscar);
 		
 		btnReportar = new JButton("Reportar Todos");
+		btnReportar.setBounds(47, 237, 380, 23);
 		btnReportar.addActionListener(this);
-		btnReportar.setBounds(50, 220, 380, 23);
 		contentPane.add(btnReportar);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -145,9 +146,25 @@ public class CotizadorAduanas extends JFrame implements ActionListener {
 		
 		txtS = new JTextArea();
 		scrollPane.setViewportView(txtS);
+		
+		btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(this);
+		btnModificar.setBounds(211, 208, 120, 22);
+		contentPane.add(btnModificar);
+		
+		btnEliminar = new JButton("Eliminar");
+		btnEliminar.addActionListener(this);
+		btnEliminar.setBounds(58, 208, 120, 22);
+		contentPane.add(btnEliminar);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnModificar) {
+			do_btnModificar_actionPerformed(e);
+		}
+		if (e.getSource() == btnEliminar) {
+			do_btnEliminar_actionPerformed(e);
+		}
 		// el semaforo de botones como le gusta al profe
 		if (e.getSource() == btnAdicionar) {
 			do_btnAdicionar_actionPerformed(e);
@@ -157,6 +174,12 @@ public class CotizadorAduanas extends JFrame implements ActionListener {
 		}
 		if (e.getSource() == btnReportar) {
 			do_btnReportar_actionPerformed(e);
+		}
+		if (e.getSource() == btnEliminar) {
+		    do_btnEliminar_actionPerformed(e);
+		}
+		if (e.getSource() == btnModificar) {
+		    do_btnModificar_actionPerformed(e);
 		}
 	}
 	
@@ -204,6 +227,7 @@ public class CotizadorAduanas extends JFrame implements ActionListener {
 	
 	protected void do_btnReportar_actionPerformed(ActionEvent e) {
 		txtS.setText("=== REPORTE TOTAL ===\n");
+		
 		if (listaCotizaciones.isEmpty()) {
 			txtS.append("Memoria vacía.");
 			return;
@@ -213,5 +237,48 @@ public class CotizadorAduanas extends JFrame implements ActionListener {
 			Cotizacion c = listaCotizaciones.get(i);
 			txtS.append("[" + (i+1) + "] " + c.obtenerReporte() + "\n");
 		}
+	}
+	Cotizacion Buscar(String cliente) {
+	    for (int i = 0; i < listaCotizaciones.size(); i++) {
+	        Cotizacion c = listaCotizaciones.get(i);
+	        if (c.getCliente().equalsIgnoreCase(cliente)) {
+	            return c;
+	        }
+	    }
+	    return null;
+	}
+	protected void do_btnEliminar_actionPerformed(ActionEvent e) {
+		Cotizacion c = Buscar(txtBuscarCliente.getText());
+
+	    if (c != null) {
+	        listaCotizaciones.remove(c);
+	        txtS.setText(">>> Cotización eliminada correctamente");
+	    } else {
+	        Mensaje("Cliente no encontrado");
+	    }
+	}
+
+	protected void do_btnModificar_actionPerformed(ActionEvent e) {
+		Cotizacion c = Buscar(txtBuscarCliente.getText());
+
+	    if (c != null) {
+	        c.setCliente(txtCliente.getText());
+	        c.setMercancia(txtTipoMercancia.getText());
+	        c.setValorUSD(Double.parseDouble(txtValorCarga.getText()));
+
+	        double totalSoles = (c.getValorUSD() * 3.75) +
+	                (chkDesaduanaje.isSelected() ? 500.0 : 0.0) + 200.0;
+
+	        c.setTotalSoles(totalSoles);
+
+	        txtS.setText(">>> Cotización modificada correctamente\n");
+	        txtS.append(c.obtenerReporte());
+
+	    } else {
+	        Mensaje("Cliente no encontrado");
+	    }
+	}
+	void Mensaje(String s) {
+	    JOptionPane.showMessageDialog(this, s);
 	}
 }
