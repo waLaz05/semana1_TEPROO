@@ -216,3 +216,6 @@ public class CotizadorAduanas extends JFrame implements ActionListener {
 	}
 }
 // Validado por Maria
+// Validado por franchessco/kevin
+// Validado por franchessco/kevin
+// Validado por franchessco/kevin
