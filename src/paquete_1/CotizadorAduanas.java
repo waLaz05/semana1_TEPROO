@@ -282,3 +282,7 @@ public class CotizadorAduanas extends JFrame implements ActionListener {
 	    JOptionPane.showMessageDialog(this, s);
 	}
 }
+// Validado por Maria
+// Validado por franchessco/kevin
+// Validado por franchessco/kevin
+// Validado por franchessco/kevin
