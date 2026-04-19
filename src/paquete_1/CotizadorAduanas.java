@@ -289,3 +289,6 @@ public class CotizadorAduanas extends JFrame implements ActionListener {
 // Revisión y lógica anexada para funcionamiento del botón de Eliminar (Joseph)
 // Revisión y lógica anexada para funcionamiento del botón de Eliminar (Joseph)
 // Lógica del botón de eliminar revisada por Joseph
+// Lógica del botón de eliminar revisada por Joseph
+/ /   V a l i d a d o   p o r   M a r i a  
+ 
