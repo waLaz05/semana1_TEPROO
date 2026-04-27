@@ -175,35 +175,44 @@ public class CotizadorAduanas extends JFrame implements ActionListener {
 		if (e.getSource() == btnReportar) {
 			do_btnReportar_actionPerformed(e);
 		}
-		if (e.getSource() == btnEliminar) {
-		    do_btnEliminar_actionPerformed(e);
-		}
-		if (e.getSource() == btnModificar) {
-		    do_btnModificar_actionPerformed(e);
-		}
 	}
 	
 	protected void do_btnAdicionar_actionPerformed(ActionEvent e) {
+		//MANEJO DE ERRORES
 		try {
-			String cliente = txtCliente.getText();
-			String mercancia = txtTipoMercancia.getText();
-			double valorUSD = Double.parseDouble(txtValorCarga.getText());
-			
-			// Matematica con TC 3.75
-			double totalSoles = (valorUSD * 3.75) + (chkDesaduanaje.isSelected() ? 500.0 : 0.0) + 200.0;
-			
-			Cotizacion c = new Cotizacion(cliente, mercancia, valorUSD, totalSoles);
-			listaCotizaciones.add(c);
-			
-			txtS.setText(">>> Cotizacion guardada exitosamente!\n");
-			txtS.append(c.obtenerReporte());
-			
-			txtCliente.setText("");
-			txtTipoMercancia.setText("");
-			txtValorCarga.setText("");
-			
-		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(this, "Error, ingresa numeros correctos en el valor en Dolares.");
+		    String cliente = txtCliente.getText();
+		    String mercancia = txtTipoMercancia.getText();
+
+		    if (cliente.isEmpty() || mercancia.isEmpty()) {
+		        Mensaje("Complete todos los campos");
+		        return;
+		    }
+
+		    double valorUSD = Double.parseDouble(txtValorCarga.getText());
+
+		    if (valorUSD <= 0) {
+		        Mensaje("Ingrese un valor mayor a 0");
+		        return;
+		    }
+
+		    Cotizacion temp = new Cotizacion(cliente, mercancia, valorUSD, 0);
+
+		    double totalSoles;
+
+		    if (chkDesaduanaje.isSelected()) {
+		        totalSoles = temp.calcularTotal(valorUSD, true);
+		    } else {
+		        totalSoles = temp.calcularTotal(valorUSD);
+		    }
+
+		    Cotizacion c = new Cotizacion(cliente, mercancia, valorUSD, totalSoles);
+		    listaCotizaciones.add(c);
+
+		    txtS.setText(">>> Cotizacion guardada exitosamente!\n");
+		    txtS.append(c.obtenerReporte());
+
+		} catch (NumberFormatException ex) {
+		    Mensaje("Ingrese solo números válidos en el valor USD");
 		}
 	}
 	

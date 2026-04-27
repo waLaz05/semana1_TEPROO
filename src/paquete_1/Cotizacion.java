@@ -52,4 +52,16 @@ public class Cotizacion {
 	public String obtenerReporte() {
 		return "Cliente: " + cliente + " | Mercancía: " + mercancia + " | USD: $" + valorUSD + " | Total: S/" + totalSoles;
 	}
+
+	public static double TIPO_CAMBIO = 3.75;
+
+	// Sobrecarga 1 sin desaduanaje
+	public double calcularTotal(double valorUSD) {
+	    return valorUSD * TIPO_CAMBIO + 200;
+	}
+
+	// Sobrecarga 2 con desaduanaje
+	public double calcularTotal(double valorUSD, boolean desaduanaje) {
+	    return (valorUSD * TIPO_CAMBIO) + 200 + (desaduanaje ? 500 : 0);
+	}
 }
