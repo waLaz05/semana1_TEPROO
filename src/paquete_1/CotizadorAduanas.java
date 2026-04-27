@@ -195,6 +195,18 @@ public class CotizadorAduanas extends JFrame implements ActionListener {
 		        return;
 		    }
 
+		    // Aporte Joseph: Validación de peso/volumen
+		    try {
+		        double peso = Double.parseDouble(txtPesoVolumen.getText());
+		        if (peso <= 0) {
+		            Mensaje("El peso/volumen debe ser mayor a 0");
+		            return;
+		        }
+		    } catch (NumberFormatException ex) {
+		        Mensaje("Ingrese un número válido en Peso/Volumen");
+		        return;
+		    }
+
 		    Cotizacion temp = new Cotizacion(cliente, mercancia, valorUSD, 0);
 
 		    double totalSoles;
