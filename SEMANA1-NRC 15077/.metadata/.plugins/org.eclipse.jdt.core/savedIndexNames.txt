@@ -1,0 +1,4 @@
+INDEX VERSION 1.134+C:\Users\UPN\Desktop\SEMANA1-NRC 15077\.metadata\.plugins\org.eclipse.jdt.core
+2022906942.index
+1865797976.index
+3825628938.index

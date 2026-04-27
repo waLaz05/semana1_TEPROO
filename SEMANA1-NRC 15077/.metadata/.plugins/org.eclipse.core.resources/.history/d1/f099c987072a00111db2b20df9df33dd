@@ -1,0 +1,147 @@
+package gui;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class V1 extends JFrame implements ActionListener {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_3;
+	private JTextField txtCod;
+	private JTextField txtNom;
+	private JTextField txtN1;
+	private JTextField txtN2;
+	private JButton btnNewButton;
+	private JButton btnNewButton_1;
+	private JButton btnNewButton_2;
+	private JButton btnNewButton_3;
+	private JButton btnNewButton_4;
+	private JTextArea txtS;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					V1 frame = new V1();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public V1() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 488, 355);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		{
+			lblNewLabel = new JLabel("Código");
+			lblNewLabel.setBounds(10, 11, 46, 14);
+			contentPane.add(lblNewLabel);
+		}
+		{
+			lblNewLabel_1 = new JLabel("Nombre");
+			lblNewLabel_1.setBounds(170, 11, 46, 14);
+			contentPane.add(lblNewLabel_1);
+		}
+		{
+			lblNewLabel_2 = new JLabel("Nota 1");
+			lblNewLabel_2.setBounds(10, 36, 46, 14);
+			contentPane.add(lblNewLabel_2);
+		}
+		{
+			lblNewLabel_3 = new JLabel("Nota 2");
+			lblNewLabel_3.setBounds(170, 36, 46, 14);
+			contentPane.add(lblNewLabel_3);
+		}
+		{
+			txtCod = new JTextField();
+			txtCod.setBounds(47, 8, 86, 20);
+			contentPane.add(txtCod);
+			txtCod.setColumns(10);
+		}
+		{
+			txtNom = new JTextField();
+			txtNom.setBounds(211, 8, 86, 20);
+			contentPane.add(txtNom);
+			txtNom.setColumns(10);
+		}
+		{
+			txtN1 = new JTextField();
+			txtN1.setBounds(47, 36, 86, 20);
+			contentPane.add(txtN1);
+			txtN1.setColumns(10);
+		}
+		{
+			txtN2 = new JTextField();
+			txtN2.setBounds(211, 36, 86, 20);
+			contentPane.add(txtN2);
+			txtN2.setColumns(10);
+		}
+		{
+			btnNewButton = new JButton("Reportar");
+			btnNewButton.addActionListener(this);
+			btnNewButton.setBounds(10, 67, 89, 23);
+			contentPane.add(btnNewButton);
+		}
+		{
+			btnNewButton_1 = new JButton("Adicionar");
+			btnNewButton_1.setBounds(101, 67, 89, 23);
+			contentPane.add(btnNewButton_1);
+		}
+		{
+			btnNewButton_2 = new JButton("Eliminar");
+			btnNewButton_2.setBounds(190, 67, 89, 23);
+			contentPane.add(btnNewButton_2);
+		}
+		{
+			btnNewButton_3 = new JButton("Buscar");
+			btnNewButton_3.setBounds(282, 67, 89, 23);
+			contentPane.add(btnNewButton_3);
+		}
+		{
+			btnNewButton_4 = new JButton("Modificar");
+			btnNewButton_4.setBounds(373, 67, 89, 23);
+			contentPane.add(btnNewButton_4);
+		}
+		{
+			txtS = new JTextArea();
+			txtS.setBounds(10, 119, 452, 186);
+			contentPane.add(txtS);
+		}
+
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnNewButton) {
+			do_btnNewButton_actionPerformed(e);
+		}
+	}
+	arreglo
+	protected void do_btnNewButton_actionPerformed(ActionEvent e) {
+		
+	}
+}

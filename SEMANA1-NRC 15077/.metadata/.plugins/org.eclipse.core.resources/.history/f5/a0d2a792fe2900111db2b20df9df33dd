@@ -1,0 +1,14 @@
+package clase;
+
+public class Estudiante {
+private int cod;
+private String nom;
+private double n1,n2;
+public Estudiante(int cod, String nom, double n1, double n2) {
+	this.cod = cod;
+	this.nom = nom;
+	this.n1 = n1;
+	this.n2 = n2;
+}
+
+}
